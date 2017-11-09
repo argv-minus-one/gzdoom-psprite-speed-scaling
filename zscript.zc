@@ -72,7 +72,6 @@ class PSpriteSpeedScaler {
 struct PSpriteSpeedScalerSet {
 	PSpriteSpeedScaler first;
 	float debt;
-	int nextCleanup;
 	
 	void Clear() {
 		first = null;
@@ -136,7 +135,7 @@ struct PSpriteSpeedScalerSet {
 		// Occasionally look for and remove unused scalers.
 		// This can happen when the scale is so low that a flash animation is skipped entirely.
 		// This has approximately O(n^2) complexity, so don't do it all the time.
-		if (gametic >= nextCleanup) {
+		if (!(gametic & 127)) {
 			for (PSpriteSpeedScaler sci = first, psci = null; sci; psci = sci, sci = sci.next) {
 				bool used = false;
 				
@@ -153,8 +152,6 @@ struct PSpriteSpeedScalerSet {
 						first = sci.next;
 				}
 			}
-			
-			nextCleanup = gametic + 200;
 		}
 	}
 }
