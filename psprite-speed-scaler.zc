@@ -20,7 +20,7 @@ class PSpriteSpeedScaler {
 
 struct PSpriteSpeedScalerSet {
 	PSpriteSpeedScaler first;
-	float debt;
+	private float debt;
 	
 	void Clear() {
 		for (let sci = first; sci; sci = sci.next)
