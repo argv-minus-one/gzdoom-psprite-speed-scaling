@@ -1,0 +1,50 @@
+class SpeedScalingPistol : Pistol {
+	private PSpriteSpeedScalerSet scalers;
+	
+	default {
+		Weapon.SlotNumber 2;
+	}
+	
+	override void Tick() {
+		Super.Tick();
+		
+		if (Owner && Owner.player && Owner.player.ReadyWeapon == self)
+			scalers.Tick(self, weapon_speed_scale);
+		else if (scalers.first)
+			scalers.Clear();
+	}
+}
+
+class SpeedScalingChaingun : Chaingun {
+	private PSpriteSpeedScalerSet scalers;
+	
+	default {
+		Weapon.SlotNumber 4;
+	}
+	
+	override void Tick() {
+		Super.Tick();
+		
+		if (Owner && Owner.player && Owner.player.ReadyWeapon == self)
+			scalers.Tick(self, weapon_speed_scale);
+		else if (scalers.first)
+			scalers.Clear();
+	}
+}
+
+class SpeedScalingShotgun : Shotgun {
+	private PSpriteSpeedScalerSet scalers;
+	
+	default {
+		Weapon.SlotNumber 3;
+	}
+	
+	override void Tick() {
+		Super.Tick();
+		
+		if (Owner && Owner.player && Owner.player.ReadyWeapon == self)
+			scalers.Tick(self, weapon_speed_scale);
+		else if (scalers.first)
+			scalers.Clear();
+	}
+}
