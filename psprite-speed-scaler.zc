@@ -28,6 +28,7 @@ struct PSpriteSpeedScalerSet {
 			sci.ps.bPowDouble = true;
 		
 		first = null;
+		debt = 0;
 	}
 	
 	void MoveAll(bool skipOrDelay, Inventory item = null) {
