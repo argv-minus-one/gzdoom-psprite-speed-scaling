@@ -103,7 +103,6 @@ struct PSpriteSpeedScalerSet {
 				first = scl;
 			}
 			
-			//scl.Tick(scale);
 			if (skipOrDelay)
 				scl.SkipTic();
 			else
@@ -125,7 +124,6 @@ struct PSpriteSpeedScalerSet {
 			
 			if (debt >= 1.) {
 				MoveAll(false, item);
-				//debt -= 1.;
 				// Don't modify debt here. Wait for the next tic before doing that. Otherwise, any delay would cause us to endlessly wait on the same state!
 			}
 			else while (debt <= -1.) {
