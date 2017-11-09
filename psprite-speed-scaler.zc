@@ -23,6 +23,10 @@ struct PSpriteSpeedScalerSet {
 	float debt;
 	
 	void Clear() {
+		for (let sci = first; sci; sci = sci.next)
+		if (sci.ps)
+			sci.ps.bPowDouble = true;
+		
 		first = null;
 	}
 	
@@ -48,6 +52,7 @@ struct PSpriteSpeedScalerSet {
 				scl = new("PSpriteSpeedScaler");
 				scl.ps = ps;
 				scl.next = first;
+				ps.bPowDouble = false;
 				first = scl;
 			}
 			
@@ -69,6 +74,13 @@ struct PSpriteSpeedScalerSet {
 		else {
 			// Time to apply the scaling thing again.
 			debt += scale;
+			
+			// Apply PowerDoubleFiringSpeed, if appropriate.
+			if (
+				item && item.Owner && (item is "Weapon") &&
+				item.Owner.FindInventory("PowerDoubleFiringSpeed", true)
+			)
+				debt -= 1.;
 			
 			if (debt >= 1.) {
 				MoveAll(false, item);
