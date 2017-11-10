@@ -1,4 +1,4 @@
-class PSpriteSpeedScaler {
+class PSpriteSpeedScaler play {
 	PSprite ps;
 	PSpriteSpeedScaler next;
 	
@@ -18,7 +18,7 @@ class PSpriteSpeedScaler {
 	}
 }
 
-struct PSpriteSpeedScalerSet {
+struct PSpriteSpeedScalerSet play {
 	PSpriteSpeedScaler first;
 	private float debt;
 	
